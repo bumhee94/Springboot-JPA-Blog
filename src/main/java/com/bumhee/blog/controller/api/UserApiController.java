@@ -1,6 +1,5 @@
 package com.bumhee.blog.controller.api;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bumhee.blog.dto.ResponseDto;
-import com.bumhee.blog.model.RoleType;
 import com.bumhee.blog.model.User;
 import com.bumhee.blog.service.UserService;
 
@@ -22,10 +20,9 @@ public class UserApiController {
 //	@Autowired
 //	private HttpSession session;
 	
-	@PostMapping("/api/user")
+	@PostMapping("/auth/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user)
 	{
-		user.setRole(RoleType.USER);
 		userService.회원가입(user);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

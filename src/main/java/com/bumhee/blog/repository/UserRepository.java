@@ -6,5 +6,4 @@ import com.bumhee.blog.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	User findByUserNameAndPassWord(String userName, String passWord);
 }

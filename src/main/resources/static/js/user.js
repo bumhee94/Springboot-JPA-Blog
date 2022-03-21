@@ -17,7 +17,7 @@ let index = {
 		
 		$.ajax({
 			type: "POST",
-			url: "/api/user",
+			url: "/auth/joinProc",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utr-8",
 			dataType: "json"
@@ -31,28 +31,7 @@ let index = {
 
 		
 	},
-		login : function(){
-		let data = {
-			userName: $("#userName").val(),
-			passWord: $("#password").val(),
-		};
-		
-		$.ajax({
-			type: "POST",
-			url: "/api/user/login",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utr-8",
-			dataType: "json"
-		}).done(function(resp){
-			alert("로그인이 완료 되었습니다.");
-			location.href = "/";
-		}).fail(function(error){
-			alert(JSON.stringfy(error));
-		});
-
-
-		
-	}
+	
 }
 
 index.init();

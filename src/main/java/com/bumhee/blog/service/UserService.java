@@ -22,9 +22,9 @@ public class UserService {
 	@Transactional
 	public void 회원가입(User user)
 	{
-		String rawPassword = user.getPassWord();
+		String rawPassword = user.getPassword();
 		String encPassword = encoder.encode(rawPassword);
-		user.setPassWord(encPassword);
+		user.setPassword(encPassword);
 		user.setRole(RoleType.USER);
 		userRepository.save(user);
 	}

@@ -13,13 +13,13 @@ public class HttpControllerTest {
 	@GetMapping("/http/lombok")
 	public String lombockTest()
 	{
-		Member m = Member.builder().userName("ssar").password("1234").email("zz").build();
-		System.out.println("getter:" + m.getUserName());
+		Member m = Member.builder().username("ssar").password("1234").email("zz").build();
+		System.out.println("getter:" + m.getUsername());
 		
-		m.setUserName("Zz");
+		m.setUsername("Zz");
 		
 		
-		System.out.println("gettet:" + m.getUserName());
+		System.out.println("gettet:" + m.getUsername());
 		
 		return "롬복 톄스트 완료";
 	}
@@ -27,12 +27,12 @@ public class HttpControllerTest {
 	@GetMapping("/http/get")
 	public String getTest(Member m)
 	{
-		return "get 요청:" + m.getId() + m.getUserName();
+		return "get 요청:" + m.getId() + m.getUsername();
 	}
 	@PostMapping("/http/post")
 	public String postTest(@RequestBody Member m)
 	{
-		return "post 요청:" + m.getId() + m.getUserName();
+		return "post 요청:" + m.getId() + m.getUsername();
 	}
 	@PutMapping("/http/put")
 	public String putTest()

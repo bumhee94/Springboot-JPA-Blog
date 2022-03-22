@@ -10,8 +10,8 @@ let index = {
 	
 	save : function(){
 		let data = {
-			userName: $("#userName").val(),
-			passWord: $("#password").val(),
+			username: $("#username").val(),
+			password: $("#password").val(),
 			email: $("#email").val()
 		};
 		

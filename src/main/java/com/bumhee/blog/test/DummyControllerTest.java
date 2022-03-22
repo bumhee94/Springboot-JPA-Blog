@@ -61,14 +61,14 @@ public class DummyControllerTest {
 	public User updateUser(@PathVariable int id, @RequestBody User reqUser)
 	{
 		System.out.println("id : " + id);
-		System.out.println("password : " + reqUser.getPassWord());
+		System.out.println("password : " + reqUser.getPassword());
 		System.out.println("email  : " + reqUser.getEmail());
 		
 		User user = userRepository.findById(id).orElseThrow(()->{
 			return new IllegalArgumentException("수정실패");
 		});
 		
-		user.setPassWord(reqUser.getPassWord());
+		user.setPassword(reqUser.getPassword());
 		user.setEmail(reqUser.getEmail());
 	
 		//userRepository.save(user);
@@ -91,8 +91,8 @@ public class DummyControllerTest {
 	public String join(User user)
 	{
 		System.out.println("id" + user.getId());
-		System.out.println("userName" + user.getUserName());
-		System.out.println("passWord" + user.getPassWord());
+		System.out.println("userName" + user.getUsername());
+		System.out.println("passWord" + user.getPassword());
 		System.out.println("email" + user.getEmail());
 		System.out.println("role" + user.getRole());
 		System.out.println("createdate" + user.getCreateDate());

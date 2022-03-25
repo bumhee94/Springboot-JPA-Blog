@@ -30,8 +30,36 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 	
+	@Transactional(readOnly = true)
 	public Page<Board> 글목록(Pageable pageable)
 	{
 		return boardRepository.findAll(pageable);
+	}
+	
+	@Transactional(readOnly = true)
+	public Board 글상세보기(int id)
+	{
+		return boardRepository.findById(id)
+				.orElseThrow(()->{
+			return new IllegalArgumentException("글 상세보기 실패");
+		});
+	}
+	
+	@Transactional
+	public void 삭제하기(int id)
+	{
+		 boardRepository.deleteById(id);
+	}
+	
+	@Transactional
+	public void 수정하기(int id, Board reqBoard)
+	{
+		Board board = boardRepository.findById(id)
+				.orElseThrow(()->{
+					return new IllegalArgumentException("글 찾기 실패");
+				});
+		 
+		board.setTitle(reqBoard.getTitle());
+		board.setContent(reqBoard.getContent());
 	}
 }

@@ -19,6 +19,7 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
+	
 	@Transactional
 	public void 회원가입(User user)
 	{
@@ -40,5 +41,7 @@ public class UserService {
 		String encPassword = encoder.encode(rawPassword);
 		persistance.setPassword(encPassword);
 		persistance.setEmail(user.getEmail());
+		
+		
 	}
 }

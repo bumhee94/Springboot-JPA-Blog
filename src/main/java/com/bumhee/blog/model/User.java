@@ -30,7 +30,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false, length=30)
+	@Column(nullable = false, length=100)
 	private String username;
 	
 	@Column(nullable = false, length=100)
@@ -41,6 +41,8 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+
+	private String oauth;
 	
 	@Enumerated(EnumType.STRING)
 	private RoleType role;

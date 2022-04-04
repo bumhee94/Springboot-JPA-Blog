@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OrderBy;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -49,6 +50,7 @@ public class Board {
 	
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties({"board"})
+	@javax.persistence.OrderBy("id desc")
 	private List<Reply> replys;
 	
 	@CreationTimestamp

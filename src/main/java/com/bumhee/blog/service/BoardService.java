@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bumhee.blog.model.Board;
+import com.bumhee.blog.model.Reply;
 import com.bumhee.blog.model.RoleType;
 import com.bumhee.blog.model.User;
 import com.bumhee.blog.repository.BoardRepository;
+import com.bumhee.blog.repository.ReplyRepository;
 import com.bumhee.blog.repository.UserRepository;
 
 @Service
@@ -21,6 +23,9 @@ public class BoardService {
 
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	@Autowired
+	private ReplyRepository replyRepository;
 	
 	@Transactional
 	public void 글쓰기(Board board, User user)
@@ -62,4 +67,22 @@ public class BoardService {
 		board.setTitle(reqBoard.getTitle());
 		board.setContent(reqBoard.getContent());
 	}
+	
+	@Transactional
+	public void 댓글쓰기(User user, int boardId, Reply reqReply)
+	{
+		Board board = boardRepository.findById(boardId).orElseThrow(() -> {
+			return new IllegalArgumentException("댓글쓰기 실패");
+		});
+		reqReply.setUser(user);
+		reqReply.setBoard(board);
+		
+		replyRepository.save(reqReply);
+	}
+	@Transactional
+	public void 댓글삭제(int replyId)
+	{
+		replyRepository.deleteById(replyId);
+	}
+	
 }
